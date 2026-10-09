@@ -88,6 +88,3 @@ The API does not reject the oversized value. It silently caps it to a safe maxim
 
 Postman · JavaScript (Chai assertions) · TheCatAPI · REST/JSON
 
-## Author
-
-**Kaniz**: university student, studying computer science, AI and data systems.
