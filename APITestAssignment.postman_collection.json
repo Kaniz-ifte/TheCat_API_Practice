@@ -1,0 +1,556 @@
+{
+	"info": {
+		"_postman_id": "9c6738a1-adac-4c21-ade0-75706ed24a24",
+		"name": "APITestAssignment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15561189"
+	},
+	"item": [
+		{
+			"name": "search_limit2_jpgType",
+			"request": {
+				"auth": {
+					"type": "apikey"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "apiKey",
+						"value": "live_H3snKwQFnlkUt0DLbuILW2CJZqTKN31WEZ2RuIEtr0dDkkEp8gRXs22YhaL452CE"
+					},
+					{
+						"key": "apiKey",
+						"value": "{{vault:the-cat-api:apiKey}}"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/images/search?limit=2&mime_types=jpg",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"images",
+						"search"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "mime_types",
+							"value": "jpg"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "search_images",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\".gif\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "apikey"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/images/search?mime_types=gif&limit=1",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"images",
+						"search"
+					],
+					"query": [
+						{
+							"key": "mime_types",
+							"value": "gif"
+						},
+						{
+							"key": "limit",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "breed search",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/images/search",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"images",
+						"search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "negative test case",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/breeds/search?q=abcxyz",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"breeds",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "abcxyz"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adding favourite cat",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "live_1qBvmcdqw3KX7s6DGjXmlswjioE5zqbj97muMcZ2Zv0I7WLl0l8xr8bQ12zzcxab",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"image_id\": \"VYfvpfuU7\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/favourites",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"favourites"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "adding favorite cat",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "live_1qBvmcdqw3KX7s6DGjXmlswjioE5zqbj97muMcZ2Zv0I7WLl0l8xr8bQ12zzcxab",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"image_id\": \"03\"\n        //\"url\": \"https://cdn2.thecatapi.com/images/MTY2ODMzMQ.jpg\",\n        //\"width\": 500,\n        //\"height\": 334\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/favourites",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"favourites"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 24 Apr 2026 20:28:44 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "36"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-dns-prefetch-control",
+							"value": "off"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "x-download-options",
+							"value": "noopen"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "vary",
+							"value": "Origin"
+						},
+						{
+							"key": "retry-after-seconds",
+							"value": "60"
+						},
+						{
+							"key": "ratelimit-limit",
+							"value": "120"
+						},
+						{
+							"key": "ratelimit-remaining",
+							"value": "119"
+						},
+						{
+							"key": "ratelimit-consumed",
+							"value": "1"
+						},
+						{
+							"key": "ratelimit-reset",
+							"value": "2026-04-24T20:29:44.014Z"
+						},
+						{
+							"key": "x-response-time",
+							"value": "284ms"
+						},
+						{
+							"key": "x-cloud-trace-context",
+							"value": "1cf0dd446240760d9c326fa3e78772cf"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "cf-cache-status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=XqBhZd1oY2wmwhJXW4KUgfCfKTAre4hIEAu2S091S7yxV7p5GASZzHWWI9bIF5p82vb4rw07tkj3u8VCfJ9cElQ10iPqrwMqRNz2bTBVohFdksCABEREDHoZyRzyBACZibtcIQ%3D%3D\"}]}"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "9f17db2679a65f12-IAD"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"SUCCESS\",\n    \"id\": 232566228\n}"
+				}
+			]
+		},
+		{
+			"name": "adding favorite cat Copy",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "live_1qBvmcdqw3KX7s6DGjXmlswjioE5zqbj97muMcZ2Zv0I7WLl0l8xr8bQ12zzcxab",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"image_id\": \"03\"\n        //\"url\": \"https://cdn2.thecatapi.com/images/MTY2ODMzMQ.jpg\",\n        //\"width\": 500,\n        //\"height\": 334\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/favourites",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"favourites"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "adding favorite cat",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-api-key",
+								"value": "live_1qBvmcdqw3KX7s6DGjXmlswjioE5zqbj97muMcZ2Zv0I7WLl0l8xr8bQ12zzcxab",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"image_id\": \"03\"\n        //\"url\": \"https://cdn2.thecatapi.com/images/MTY2ODMzMQ.jpg\",\n        //\"width\": 500,\n        //\"height\": 334\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/favourites",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"favourites"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Date",
+							"value": "Fri, 24 Apr 2026 20:28:44 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "36"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "x-dns-prefetch-control",
+							"value": "off"
+						},
+						{
+							"key": "x-frame-options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "strict-transport-security",
+							"value": "max-age=15552000; includeSubDomains"
+						},
+						{
+							"key": "x-download-options",
+							"value": "noopen"
+						},
+						{
+							"key": "x-content-type-options",
+							"value": "nosniff"
+						},
+						{
+							"key": "x-xss-protection",
+							"value": "1; mode=block"
+						},
+						{
+							"key": "vary",
+							"value": "Origin"
+						},
+						{
+							"key": "retry-after-seconds",
+							"value": "60"
+						},
+						{
+							"key": "ratelimit-limit",
+							"value": "120"
+						},
+						{
+							"key": "ratelimit-remaining",
+							"value": "119"
+						},
+						{
+							"key": "ratelimit-consumed",
+							"value": "1"
+						},
+						{
+							"key": "ratelimit-reset",
+							"value": "2026-04-24T20:29:44.014Z"
+						},
+						{
+							"key": "x-response-time",
+							"value": "284ms"
+						},
+						{
+							"key": "x-cloud-trace-context",
+							"value": "1cf0dd446240760d9c326fa3e78772cf"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "cf-cache-status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=XqBhZd1oY2wmwhJXW4KUgfCfKTAre4hIEAu2S091S7yxV7p5GASZzHWWI9bIF5p82vb4rw07tkj3u8VCfJ9cElQ10iPqrwMqRNz2bTBVohFdksCABEREDHoZyRzyBACZibtcIQ%3D%3D\"}]}"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "9f17db2679a65f12-IAD"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"SUCCESS\",\n    \"id\": 232566228\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete favourite cat",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "live_1qBvmcdqw3KX7s6DGjXmlswjioE5zqbj97muMcZ2Zv0I7WLl0l8xr8bQ12zzcxab",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/favourites/232566228",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"favourites",
+						"232566228"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Votes",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "live_1qBvmcdqw3KX7s6DGjXmlswjioE5zqbj97muMcZ2Zv0I7WLl0l8xr8bQ12zzcxab",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"image_id\": \"asf2\",\n    \"sub_id\": \"my-user-123\",\n    \"value\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/votes",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"votes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"auth": {
+					"type": "apikey"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "live_H3snKwQFnlkUt0DLbuILW2CJZqTKN31WEZ2RuIEtr0dDkkEp8gRXs22YhaL452CE",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{URL}}/breeds",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"breeds"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
